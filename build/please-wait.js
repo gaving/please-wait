@@ -83,8 +83,9 @@
     PleaseWait._defaultOptions = {
       backgroundColor: null,
       logo: null,
+      backLogo: null,
       loadingHtml: null,
-      template: "<div class='pg-loading-inner'>\n  <div class='pg-loading-center-outer'>\n    <div class='pg-loading-center-middle'>\n      <h1 class='pg-loading-logo-header'>\n        <img class='pg-loading-logo'></img>\n      </h1>\n      <div class='pg-loading-html'>\n      </div>\n    </div>\n  </div>\n</div>",
+      template: "<div class='pg-loading-inner'>\n  <div class='pg-loading-center-outer'>\n    <div class='pg-loading-center-middle'>\n      <div class='pg-loading-logo-header'>\n        <img class='pg-loading-logo'></img>\n    <img class='pg-loading-logo-back'></img>\n</div>\n      <div class='pg-loading-html'>\n      </div>\n    </div>\n  </div>\n</div>",
       onLoadedCallback: null
     };
 
@@ -113,6 +114,10 @@
       this._logoElem = this._loadingElem.getElementsByClassName("pg-loading-logo")[0];
       if (this._logoElem != null) {
         this._logoElem.src = this.options.logo;
+      }
+      this._logoBackElem = this._loadingElem.getElementsByClassName("pg-loading-logo-back")[0];
+      if (this._logoBackElem != null) {
+        this._logoBackElem.src = this.options.backLogo;
       }
       removeClass("pg-loaded", document.body);
       addClass("pg-loading", document.body);
