@@ -26,7 +26,15 @@ body.pg-loading {
   top: 0;
   z-index: 1000000;
   opacity: 1;
-  background-color: #FFF;
+
+  background: $primary-color; /* Old browsers */
+  background: -moz-linear-gradient(45deg,  $primary-color 0%, $secondary-color 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left bottom, right top, color-stop(0%,$primary-color), color-stop(100%,$secondary-color)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(45deg,  $primary-color 0%,$secondary-color 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(45deg,  $primary-color 0%,$secondary-color 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(45deg,  $primary-color 0%,$secondary-color 100%); /* IE10+ */
+  background: linear-gradient(45deg,  $primary-color 0%,$secondary-color 100%); /* W3C */
+
   @include prefixed(transition, background-color 0.4s ease-in-out 0s);
 
   &.pg-loaded {
@@ -40,7 +48,7 @@ body.pg-loading {
     }
 
     .pg-loading-logo-header, .pg-loading-html:not(.pg-loaded) {
-      @include prefixed(animation, pgAnimLoading 1s cubic-bezier(0.7,0,0.3,1) both);
+      // @include prefixed(animation, pgAnimLoading 1s);
     }
 
     .pg-loading-html:not(.pg-loaded) {
@@ -86,6 +94,23 @@ body.pg-loading {
     img {
       display: inline-block !important;
     }
+
+    -webkit-animation: pgAnimLogoSpin 7s infinite;
+    animation: pgAnimLogoSpin 7s infinite; 
+  }
+
+  .pg-loading-logo {
+    height: 350px;
+    z-index: 5;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+
+  .pg-loading-logo-back {
+    height: 200px;
+    z-index: 5;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
   }
 
   .pg-loading-html {
@@ -103,6 +128,17 @@ body.pg-loading {
       }
     }
   }
+}
+
+.pg-loading-error {
+  background: #a90329 !important;
+  background: -moz-linear-gradient(45deg,  #a90329 0%, #8f0222 44%, #6d0019 100%) !important;
+  background: -webkit-gradient(linear, left bottom, right top, color-stop(0%,#a90329), color-stop(44%,#8f0222), color-stop(100%,#6d0019)) !important;
+  background: -webkit-linear-gradient(45deg,  #a90329 0%,#8f0222 44%,#6d0019 100%) !important;
+  background: -o-linear-gradient(45deg,  #a90329 0%,#8f0222 44%,#6d0019 100%) !important;
+  background: -ms-linear-gradient(45deg,  #a90329 0%,#8f0222 44%,#6d0019 100%) !important;
+  background: linear-gradient(45deg,  #a90329 0%,#8f0222 44%,#6d0019 100%) !important;
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a90329', endColorstr='#6d0019',GradientType=1 ) !important;
 }
 
 @-webkit-keyframes pgAnimLoading {
@@ -154,5 +190,17 @@ body.pg-loading {
 @keyframes pgAnimLoaded {
   from {
     opacity: 1;
+  }
+}
+
+@-webkit-keyframes pgAnimLogoSpin {
+  to {
+    -webkit-transform: rotateY(360deg);
+  }
+}
+
+@keyframes pgAnimLogoSpin {
+  to {
+    transform: rotateY(360deg);
   }
 }
